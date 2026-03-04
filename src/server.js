@@ -9,10 +9,6 @@ const port = 3000
 app.use("/user", userRouter)
 app.use("/post", postRouter)
 
-app.get("/", (req, res) => {
-  res.send("Olá Mundo Express API!")
-})
-
 app.listen(port, () => {
   console.log(`Servidor rodando em  http://localhost:${port}`)
 })

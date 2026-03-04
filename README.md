@@ -3,6 +3,7 @@
 - Qual a linguagem de programação utilizada para o nosso Backend?
   JavaScript
 - O que é o Node.js?
+  <<<<<<< HEAD
   Ambiente/Runtime que roda o JavaScript no servidor. Há alternativas como bun e deno.
 - O que é o NPM?
   Gerenciador de pacotes node, Node Package Manager. Ele permite adicionar remover pacotes e tambem fazer outras configurações no projeto node.
@@ -15,6 +16,15 @@
   Também pode ser um meio de comunicação entre dois computadores ou entidades. Há interfaces de saída e entrada, sites são de entrada e saída, interface é interativa onde quando há uma ação há uma reação. Por exemplo requisição e resposta.
 - O que é um Framework?
   Conjunto de recursos e ferramentas para resolver um problema baseada em uma estrutura, orienta também como resolver. Há diferenças na flexibilidade de como resolver. Express é mais flexível.
+  =======
+  Ambiente/Runtime que roda o JavaScript no servidor local. Há alternativas como bun e deno.
+- O que é o NPM?
+  Gerenciador de pacotes node, Node Package Manager. Há alternativas como pnpm, Yarn, Bun e Turb
+- O que é o Express.js?
+  Framework web para Node.js (Backend JavaScript)
+  O que é um Framework?
+  - Conjunto de recursos e ferramentas para resolver um problema baseada em uma estrutura, orienta também como resolver. Há diferenças na flexibilidade de como resolver. Express é mais flexível.
+    > > > > > > > 3ea60d828a9c3f149bc8c15cead61726a661ec31
 - Como mudar o formato de importação de importação de "require" (padrão commonjs)?
   Na hora de criar o package.json coloca o type module. E utiliza a sintaxe "import".
   //const express = require("express") - commonjs
