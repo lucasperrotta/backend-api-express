@@ -4,6 +4,7 @@ import { createPostController } from "../controllers/post/createPostController.j
 import { updatePostController } from "../controllers/post/updatePostController.js"
 import { updateTitlePostController } from "../controllers/post/updateTitlePostController.js"
 import { deletePostController } from "../controllers/post/deletePostController.js"
+
 const router = express.Router()
 
 router.get("/", getPostsController)
