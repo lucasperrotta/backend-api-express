@@ -59,7 +59,6 @@ Mysql e Mariadb
 
 - npm install @prisma/client @prisma/adapter-mariadb mariadb
   Inicia o Prisma
-
 - npx prisma init --datasource-provider mysql --output ../generated/prisma
 
 Gera o schema do Prisma a partir do banco de dados
