@@ -13,3 +13,7 @@ export const createPublication = async (publication) => {
     data: publication,
   })
 }
+
+export const getPublication = async () => {
+  return await prisma.publication.findMany()
+}

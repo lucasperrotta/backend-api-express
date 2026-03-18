@@ -1,3 +1,9 @@
-export function getPubliController(req, res) {
-  res.send("Exemplo de GET na rota /publication respondida pelo Controller")
+import { getPublication } from "../../models/publicationModel.js"
+
+export async function getPubliController(req, res) {
+  const result = await getPublication()
+  res.json({
+    message: "Publicações listadas com sucesso!",
+    publications: result,
+  })
 }
