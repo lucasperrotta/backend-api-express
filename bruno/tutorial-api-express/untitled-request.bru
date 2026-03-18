@@ -1,0 +1,19 @@
+meta {
+  name: publication
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/publication
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+     "title": "Lucas Perrotta Barbosa",
+     "description": "Esta é uma publicação de exemplo",
+     "author": "Lucas Perrotta Barbosa"
+  }
+}

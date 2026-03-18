@@ -53,7 +53,7 @@ Cada rotas/endpoints pode ter até 5 métodos(um de cada)
 Instalação
 
 - npm i prisma -D
-- npm i dotenv -D
+- npm i dotenv
 
 Mysql e Mariadb
 

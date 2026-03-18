@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Tutorial API Express",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
