@@ -19,6 +19,7 @@
   Application Programming Interface. Interface de Programação de Aplicações.
   Interface é todo meio de comunicação entre humano e computador.
   Também pode ser um meio de comunicação entre dois computadores ou entidades. Há interfaces de saída e entrada, sites são de entrada e saída, interface é interativa onde quando há uma ação há uma reação. Por exemplo requisição e resposta.
+  API Web: Conjunto de rotas e endpoints com métodos e parâmetros de URL
 - Como mudar o formato de importação de importação de "require" (padrão commonjs)?
   Na hora de criar o package.json coloca o type module. E utiliza a sintaxe "import".
   //const express = require("express") - commonjs
@@ -46,6 +47,15 @@
   ORM (do inglês Object-Relational Mapping ou Mapeamento Objeto-Relacional) é uma técnica de desenvolvimento que permite integrar bancos de dados relacionais com linguagens de programação orientadas a objetos.
 - Quais as vantagens de utilizar um ORM?
   Conseguir trocar de banco de dados com facilidade.
+
+- Como utilizar parâmetros de Url?
+- O que é Middleware? (Exemplo Logger)
+
+---
+
+- Validação de Dados
+- Tratamento de Erros
+- Autenticação com JWT
 
 ---
 
