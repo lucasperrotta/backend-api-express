@@ -12,9 +12,9 @@
   npm i express - instalala pacote express adiciona express no package e dependendencias do express no package-lock
 
 - O que é o Express.js?
-  Framework web para Node.js (Backend JavaScript) e construir APIS'S.
+  Framework web para Node.js, cria servidor web (Backend JavaScript) e construir APIS'S.
 - O que é um Framework?
-  Conjunto de recursos e ferramentas para resolver um problema baseada em uma estrutura, orienta também como resolver. Há diferenças na flexibilidade de como resolver. Express é mais flexível.
+  Conjunto de recursos e ferramentas para resolver um problema baseada em uma estrutura, diferente de bibliotecas também orienta também como resolver. Há diferenças na flexibilidade de como resolver. Express é mais flexível.
 - O que é uma API?
   Application Programming Interface. Interface de Programação de Aplicações.
   Interface é todo meio de comunicação entre humano e computador.
