@@ -7,6 +7,10 @@
 - O que é o NPM?
   Gerenciador de pacotes node, Node Package Manager. Ele permite adicionar remover pacotes e tambem fazer outras configurações no projeto node.
   Há alternativas como pnpm, Yarn, Bun e Turb
+
+  npm init - inicia projeto cria package.json
+  npm i express - instalala pacote express adiciona express no package e dependendencias do express no package-lock
+
 - O que é o Express.js?
   Framework web para Node.js (Backend JavaScript) e construir APIS'S.
 - O que é um Framework?
