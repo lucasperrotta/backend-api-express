@@ -3,8 +3,6 @@ import { deleteUser, validateUser } from "../../models/userModel.js"
 export async function deleteUsersController(req, res) {
   const id = req.params.id
 
-  //const result = await deleteUser(+id) // operador "+" para converter string para number
-
   const { success, error, data } = validateUser(
     { id: +id },
     { name: true, avatar: true, pass: true, email: true },
@@ -18,6 +16,7 @@ export async function deleteUsersController(req, res) {
   }
 
   const result = await deleteUser(data.id)
+
   return res.json({
     message: "Usuário deletado com sucesso!",
     user: result,

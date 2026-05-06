@@ -109,6 +109,12 @@
 --------- Próximos Tópicos
 
 - Validação de Dados com Zod
+  - Para que serve a biblioteca do Zod?
+    Ajuda a fazer a validação dos dados antes de serem persistidos no banco de dados e definir as regras de negócio do modelo.
+  - Para que serve a função Partial?
+    É uma forma de flexibilizar pontualmente uma validação obrigatória.
+  - Qual a diferença do parse para o safeParse?
+    O parse lança uma exceção. O safeParse devolve um objeto.
 - Tratamento de Erros
 - Autenticação com JWT
 

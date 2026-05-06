@@ -1,0 +1,15 @@
+meta {
+  name: deletePublication
+  type: http
+  seq: 0
+}
+
+delete {
+  url: http://localhost:3000/publication/1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
