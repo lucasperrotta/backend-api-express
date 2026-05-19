@@ -20,6 +20,5 @@ export const createValidator = (schema) => {
       data: validatedData,
     }
   }
-
   return validator
 }
