@@ -1,0 +1,22 @@
+meta {
+  name: patchPublication
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:3000/publication/title/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Nova materia do Perrotta"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
