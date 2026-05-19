@@ -116,6 +116,12 @@
   - Qual a diferença do parse para o safeParse?
     O parse lança uma exceção. O safeParse devolve um objeto.
 - Tratamento de Erros
+  - Qual o papel do ErrorHandler?
+    - Quais erros devem ser tratados pelo ErrorHandler e quais devem ser tratados no try catch do controller?
+    - Quais os parametros de entrada de um middlaweare de ErrorHandler?
+  - Query Params (/user/?name=renan)
+    - Como capturar um parametro query da url no Controller?
+    - Para que são utilizados em geral os query params?
 - Autenticação com JWT
 
 ---
