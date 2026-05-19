@@ -1,3 +1,8 @@
+import {
+  updatePublication,
+  validatePublication,
+} from "../../models/publicationModel.js"
+
 export async function updateTitlePubliController(req, res, next) {
   try {
     const { id } = req.params
