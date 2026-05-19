@@ -35,16 +35,32 @@ export const createUser = async (user) => {
   })
 }
 
-export const getUser = async () => {
-  return await prisma.user.findMany()
+export const getUser = async (name) => {
+  return await prisma.user.findMany(
+    name
+      ? {
+          where: {
+            name: {
+              contains: name,
+            },
+          },
+        }
+      : {},
+  )
 }
 
 export const deleteUser = async (id) => {
-  return await prisma.user.delete({
-    where: {
-      id,
-    },
-  })
+  return await prisma.user.findMany(
+    name
+      ? {
+          where: {
+            name: {
+              contains: name,
+            },
+          },
+        }
+      : {},
+  )
 }
 
 export const updateUser = async (user, id) => {
