@@ -123,6 +123,12 @@
     - Como capturar um parametro query da url no Controller?
     - Para que são utilizados em geral os query params?
 - Autenticação com JWT
+  - Quais as diferenças dos métodos de Autenticação? E como funciona?
+    - Basica Acess ou Auth - Base 64 (email:pass)
+    - Bearer Token (Opaque)
+    - Bearer Token JWT
+    - Bearer Token JWT + Refresh Token
+  - Quais as caracterÍsticas dos JWT?
 
 ---
 
