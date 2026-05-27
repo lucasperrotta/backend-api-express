@@ -111,24 +111,94 @@
 - Validação de Dados com Zod
   - Para que serve a biblioteca do Zod?
     Ajuda a fazer a validação dos dados antes de serem persistidos no banco de dados e definir as regras de negócio do modelo.
+    Valida tipos, formatos, strings, números, datas, etc. Garante que os dados estejam corretos conforme as regras definidas.
   - Para que serve a função Partial?
-    É uma forma de flexibilizar pontualmente uma validação obrigatória.
+    É uma forma de flexibilizar pontualmente uma validação obrigatória. Permite que todos os campos sejam opcionais (útil para operações PATCH).
+    Exemplo: `userSchema.partial()` permite atualizar apenas alguns campos sem precisar passar todos obrigatoriamente.
   - Qual a diferença do parse para o safeParse?
-    O parse lança uma exceção. O safeParse devolve um objeto.
+    O parse lança uma exceção (throw error) se os dados não forem válidos, interrompendo a execução.
+    O safeParse devolve um objeto com `{ success: boolean, data: T, error: ZodError }`, permitindo tratamento mais controlado do erro.
+    Recomenda-se usar safeParse em controllers para ter melhor controle do fluxo.
+
 - Tratamento de Erros
   - Qual o papel do ErrorHandler?
-    - Quais erros devem ser tratados pelo ErrorHandler e quais devem ser tratados no try catch do controller?
-    - Quais os parametros de entrada de um middlaweare de ErrorHandler?
-  - Query Params (/user/?name=renan)
-    - Como capturar um parametro query da url no Controller?
-    - Para que são utilizados em geral os query params?
+    Middleware que captura todos os erros não tratados e padroniza a resposta de erro enviada ao cliente (status HTTP apropriado e mensagem).
+    Deve ser sempre o último middleware da aplicação.
+  - Quais erros devem ser tratados pelo ErrorHandler e quais devem ser tratados no try catch do controller?
+    No controller (try/catch): erros esperados da lógica de negócio (validação, recurso não encontrado, etc).
+    No ErrorHandler: erros inesperados (erros de servidor, bugs, conexão com BD) que não foram tratados no controller.
+    Exemplo: usar try/catch para `const user = await db.user.findUnique(...)` e throw error customizado se não encontrar.
+  - Quais os parametros de entrada de um middleware de ErrorHandler?
+    `(err, req, res, next)` - recebe 4 parâmetros (importante ter 4, senão Express não reconhece como ErrorHandler).
+    `err`: objeto do erro; `req`: requisição; `res`: resposta; `next`: próximo middleware.
+    
+    Exemplo:
+    ```js
+    function errorHandler(err, req, res, next) {
+      const statusCode = err.statusCode || 500
+      const message = err.message || "Erro interno do servidor"
+      res.status(statusCode).json({ error: message })
+    }
+    
+    app.use(errorHandler)
+    ```
+
+- Query Params (/user/?name=renan)
+  - Como capturar um parametro query da url no Controller?
+    Usar `req.query` para acessar os parâmetros. Cada parâmetro após `?` separado por `&`.
+    
+    Exemplo:
+    ```js
+    // URL: /users?name=renan&age=25
+    function getUsers(req, res) {
+      const { name, age } = req.query
+      // name = "renan", age = "25" (sempre strings)
+      res.json({ name, age })
+    }
+    ```
+    
+  - Para que são utilizados em geral os query params?
+    Filtros: `/products?category=eletrônicos&price=100`
+    Paginação: `/users?page=2&limit=10`
+    Busca: `/search?term=javascript`
+    Ordenação: `/posts?sort=date&order=desc`
+    São opcionais e afetam como os dados são retornados, não identificam um recurso específico (diferente de route params).
+
 - Autenticação com JWT
   - Quais as diferenças dos métodos de Autenticação? E como funciona?
-    - Basica Acess ou Auth - Base 64 (email:pass)
-    - Bearer Token (Opaque)
-    - Bearer Token JWT
-    - Bearer Token JWT + Refresh Token
-  - Quais as caracterÍsticas dos JWT?
+    
+    1. **Basic Auth (Base 64)**: 
+       - Cliente envia `Authorization: Basic base64(email:senha)` a cada requisição.
+       - Servidor decodifica e valida as credenciais.
+       - Simples, mas expõe credenciais em cada requisição (usar apenas com HTTPS).
+    
+    2. **Bearer Token (Opaque)**:
+       - Cliente recebe um token opaco do servidor (string aleatória) e envia `Authorization: Bearer token`.
+       - Servidor valida o token em um banco de dados ou cache.
+       - Mais seguro que Basic Auth, mas exige consulta ao BD/cache a cada requisição.
+    
+    3. **Bearer Token JWT**:
+       - Cliente recebe um JWT (token auto-verificável) contendo dados codificados.
+       - JWT é enviado como `Authorization: Bearer token`.
+       - Servidor valida apenas assinatura do token (sem consultar BD).
+       - Mais eficiente, mas token exposto na URL/localStorage é risco XSS.
+    
+    4. **Bearer Token JWT + Refresh Token**:
+       - JWT tem curta duração (ex: 15 min). Refresh Token tem longa duração (ex: 7 dias).
+       - Quando JWT expira, cliente usa Refresh Token para obter um novo JWT.
+       - Servidor valida Refresh Token no BD e emite novo JWT.
+       - Melhor segurança: se JWT for roubado, é válido por pouco tempo.
+  
+  - Quais as características dos JWT?
+    - **Estrutura**: `header.payload.signature` (3 partes separadas por ponto).
+    - **Header**: tipo de token e algoritmo de assinatura (usualmente HS256 ou RS256).
+    - **Payload**: dados do usuário (claims): `{ sub: "123", email: "user@example.com", iat: 1234567890, exp: 1234571490 }`.
+    - **Signature**: hash HMAC do header+payload usando uma chave secreta. Garante que token não foi alterado.
+    - **Auto-verificável**: servidor pode validar sem consultar BD, apenas verificando a assinatura.
+    - **Stateless**: não requer sessão no servidor, reduz carga.
+    - **Expiração**: campo `exp` define quando token deixa de ser válido.
+    - **Transportável**: pode ser enviado em header, cookie ou query string (menos seguro).
+    - **Desvantagem**: token não pode ser revogado imediatamente (válido até expiração, a menos que haja blacklist).
 
 ---
 
