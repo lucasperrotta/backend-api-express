@@ -35,7 +35,7 @@ export const createUser = async (user) => {
   })
 }
 
-export const getUser = async (name) => {
+export const getUsers = async (name) => {
   return await prisma.user.findMany(
     name
       ? {
