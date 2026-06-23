@@ -9,7 +9,7 @@ import { error404 } from "./middlewares/error404.js"
 import cookieParser from "cookie-parser"
 
 const app = express()
-const port = 3333
+const port = 3000
 
 app.use(logger)
 app.use(cookieParser())
