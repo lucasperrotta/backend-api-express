@@ -2,13 +2,6 @@ import * as z from "zod"
 import { prisma } from "../helpers/dbConnection.js"
 import { createValidator } from "../helpers/createValidator.js"
 
-// user = {
-//   name: "Lucas Perrotta Barbosa",
-//   email: "perrotta.lucas@gmail.com",
-//   pass: "12345678",
-//   avatar: "https://github.com/lucasperrotta.png",
-// }
-
 const userSchema = z.object({
   id: z
     .int("Id é obrigatório e deve ser um valor numérico")
@@ -32,35 +25,53 @@ export const validateUser = createValidator(userSchema)
 export const createUser = async (user) => {
   return await prisma.user.create({
     data: user,
+    select: {
+      id: true,
+      avatar: true,
+      name: true,
+      email: true,
+    },
   })
 }
 
 export const getUsers = async (name) => {
-  return await prisma.user.findMany(
-    name
+  return await prisma.user.findMany({
+    where: name
       ? {
-          where: {
-            name: {
-              contains: name,
-            },
+          name: {
+            contains: name,
           },
         }
       : {},
-  )
+    select: {
+      id: true,
+      avatar: true,
+      name: true,
+      email: true,
+    },
+  })
+}
+
+export const getUserByEmail = async (email) => {
+  return await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  })
 }
 
 export const deleteUser = async (id) => {
-  return await prisma.user.findMany(
-    name
-      ? {
-          where: {
-            name: {
-              contains: name,
-            },
-          },
-        }
-      : {},
-  )
+  return await prisma.user.delete({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      avatar: true,
+      name: true,
+      email: true,
+    },
+  })
 }
 
 export const updateUser = async (user, id) => {
@@ -68,6 +79,12 @@ export const updateUser = async (user, id) => {
     data: user,
     where: {
       id,
+    },
+    select: {
+      id: true,
+      avatar: true,
+      name: true,
+      email: true,
     },
   })
 }
