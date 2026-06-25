@@ -27,5 +27,5 @@ app.use(error404)
 app.use(errorHandler)
 
 app.listen(port, () => {
-  console.log(`Servidor rondando em http://localhost:${port}`)
+  console.log(`Servidor rodando em http://localhost:${port}`)
 })
