@@ -4,8 +4,8 @@ export const closeSessionsController = async (req, res, next) => {
   const userId = req.userId
 
   try {
-    const result = await deleteAllSessionsByUserId(userId)
-    console.log(result)
+    await deleteAllSessionsByUserId(userId)
+
     res.clearCookie("refreshToken", {
       httpOnly: true,
       sameSite: "None",
